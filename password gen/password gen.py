@@ -1,7 +1,3 @@
-import string
-print("Python gebruikt string module vanaf:", string.__file__)
-
-
 
 import random # voor random keuzes van de tekens die er in komen 
 import string # voor meer opties dan die er standaard zijn
