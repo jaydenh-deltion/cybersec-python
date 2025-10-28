@@ -24,3 +24,4 @@ else:
     print("Strong password")
 
 print(" Thank you for using the Password Strength Checker!")
+
