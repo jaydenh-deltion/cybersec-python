@@ -19,11 +19,11 @@ def handle_client(client_socket, addr):
                 break
             print("\n{Fore.GREEN}[{addr[0]} output]: {Fore.RESERT} {response}")
         except: (ConnectionResetError, BrokenPipeError):
-            break
+        break
 
-            print(f"\n{Fore.RESET}[{Fore.RED}] Client {addr[0]} disconnected.")
-            client_socket.close()
-            del clients[addr]
+        print(f"\n{Fore.RESET}[{Fore.RED}] Client {addr[0]} disconnected.")
+        client_socket.close()
+        del clients[addr]
 
 def accept_clients(server):
     while True:
@@ -51,7 +51,21 @@ while True:
 
     try:
         choice = int(input("Select a client to interact with (0 to refresh): "))- 1
-        except ValueError:
+    except ValueError:
             continue
+    
+    if choice == -1:
+        command = input("Enter command to broadcast to all clients: ")
+        for client_socket in clients.values():
+            clients.send(command.encode())
+    elif 0 <= choice < len(clients):
+        target_addr = list(clients.keys())[choice]
+        command = input (f"Enter command to send to {target_addr[0]}: ")
+        clients[target_addr].send(command.encode())
+    else:
+        print("Invalid choice. Please try again.")
 
+if __name__ == "__main__":
+    start_server()
 
+    
