@@ -18,7 +18,7 @@ def handle_client(client_socket, addr):
             if not response:
                 break
             print("\n{Fore.GREEN}[{addr[0]} output]: {Fore.RESERT} {response}")
-        except: (ConnectionResetError, BrokenPipeError):
+        except: (ConnectionResetError, BrokenPipeError)
         break
 
         print(f"\n{Fore.RESET}[{Fore.RED}] Client {addr[0]} disconnected.")
